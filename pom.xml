@@ -9,9 +9,9 @@
         <relativePath/>
     </parent>
     <groupId>org.egualpam.contexts.payment</groupId>
-    <artifactId>wallet-interaction-service</artifactId>
+    <artifactId>observable-wallet-interaction-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>wallet-interaction.service</name>
+    <name>observable-wallet-interaction.service</name>
     <url/>
 
     <properties>

@@ -1,0 +1,17 @@
+package org.egualpam.contexts.observable.walletinteractionservice.wallet.adapters.`in`.controllers
+
+import org.egualpam.contexts.observable.walletinteractionservice.wallet.application.usecases.command.CreateWalletCommand
+
+data class PutWalletRequest(val wallet: Wallet) {
+  data class Wallet(val id: String, val owner: Owner, val account: Account)
+  data class Owner(val id: String, val username: String)
+  data class Account(val id: String, val currency: String)
+
+  fun toCommand() = CreateWalletCommand(
+      wallet.id,
+      wallet.owner.id,
+      wallet.owner.username,
+      wallet.account.id,
+      wallet.account.currency,
+  )
+}
