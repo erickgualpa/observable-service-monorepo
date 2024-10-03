@@ -8,3 +8,10 @@ services:
       - MYSQL_ROOT_PASSWORD=wis-db-pw
     ports:
       - '3306:3306'
+  grafana:
+    image: grafana/grafana:10.0.1
+    ports:
+      - '3000:3000'
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=egualpam
