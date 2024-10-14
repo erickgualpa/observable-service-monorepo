@@ -42,7 +42,7 @@ abstract class AbstractIntegrationTest {
     private const val MYSQL = "mysql"
     private const val MYSQL_PORT = 3306
 
-    private val containers = ComposeContainer(File("docker-compose.yml"))
+    private val containers = ComposeContainer(File("docker-compose-test.yml"))
         .withExposedService(MYSQL, MYSQL_PORT)
 
     init {

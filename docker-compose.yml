@@ -1,14 +1,6 @@
+include:
+  - docker-compose-test.yml
 services:
-  mysql:
-    image: "mysql:latest"
-    environment:
-      - MYSQL_DATABASE=wis
-      - MYSQL_USER=wis-db-user
-      - MYSQL_PASSWORD=wis-db-pw
-      - MYSQL_ROOT_PASSWORD=wis-db-pw
-    ports:
-      - '3306:3306'
-
   grafana:
     image: grafana/grafana:10.0.1
     ports:
