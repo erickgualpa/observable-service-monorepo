@@ -2,7 +2,9 @@ package org.egualpam.contexts.observable.walletinteractionservice.health
 
 import org.egualpam.contexts.observable.walletinteractionservice.shared.adapters.AbstractIntegrationTest
 import org.junit.jupiter.api.Test
+import org.springframework.boot.test.autoconfigure.actuate.observability.AutoConfigureObservability
 
+@AutoConfigureObservability
 class ApplicationHealthCheck : AbstractIntegrationTest() {
 
   @Test
@@ -20,5 +22,14 @@ class ApplicationHealthCheck : AbstractIntegrationTest() {
               }
             """,
         )
+  }
+
+  @Test
+  fun `application prometheus metrics endpoint is available`() {
+    webTestClient.get()
+        .uri("/actuator/prometheus")
+        .exchange()
+        .expectStatus()
+        .isOk
   }
 }

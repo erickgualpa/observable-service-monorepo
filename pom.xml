@@ -42,6 +42,13 @@
         </dependency>
         <!-- End of Spring Boot dependencies -->
 
+        <!-- Begin of Observability dependencies -->
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+        </dependency>
+        <!-- End of Observability dependencies -->
+
         <!-- Begin of OpenAPI dependencies -->
         <dependency>
             <groupId>org.springdoc</groupId>
