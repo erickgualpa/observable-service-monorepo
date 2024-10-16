@@ -1,6 +1,42 @@
-include:
-  - docker-compose-test.yml
 services:
+  mysql:
+    image: "mysql:latest"
+    environment:
+      - MYSQL_DATABASE=wis
+      - MYSQL_USER=wis-db-user
+      - MYSQL_PASSWORD=wis-db-pw
+      - MYSQL_ROOT_PASSWORD=wis-db-pw
+    ports:
+      - '3306:3306'
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 2s
+      timeout: 10s
+      retries: 30
+      start_period: 30s
+    networks:
+      - backend
+
+  wis-app:
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - '8080:8080'
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - backend
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - '9090:9090'
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - backend
+
   grafana:
     image: grafana/grafana:10.0.1
     ports:
@@ -8,10 +44,16 @@ services:
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=egualpam
+    depends_on:
+      - prometheus
+    volumes:
+      - ./grafana/setup/provisioning:/etc/grafana/provisioning
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://grafana:3000/api/health" ]
       interval: 2s
       retries: 30
+    networks:
+      - backend
 
   # Workaround used to run the init script for the 'grafana' service
   init_grafana:
@@ -24,6 +66,12 @@ services:
         condition: service_healthy
     volumes:
       - ./grafana:/etc/grafana/init/
-      - ./init_grafana.sh:/init_grafana.sh
+      - ./grafana/setup/init_grafana.sh:/init_grafana.sh
     working_dir: "/"
     entrypoint: [ "/bin/bash", "-c", "/init_grafana.sh" ]
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
