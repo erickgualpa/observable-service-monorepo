@@ -97,7 +97,7 @@
         "x": 0,
         "y": 1
       },
-      "id": 1,
+      "id": 4,
       "options": {
         "legend": {
           "calcs": [
@@ -105,7 +105,9 @@
           ],
           "displayMode": "table",
           "placement": "right",
-          "showLegend": true
+          "showLegend": true,
+          "sortBy": "Max",
+          "sortDesc": true
         },
         "tooltip": {
           "mode": "single",
@@ -120,14 +122,14 @@
           },
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "http_server_requests_seconds_count{uri=~\"/v1/wallets/{wallet-id}|/v1/wallets|/v1/wallets/{wallet-id}/deposit\"}",
+          "expr": "rate(http_server_requests_seconds_count{uri=~\"/v1/wallets/{wallet-id}|/v1/wallets|/v1/wallets/{wallet-id}/deposit\"}[1m])",
           "instant": false,
           "legendFormat": "{{method}} {{uri}} {{status}}",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "HTTP requests",
+      "title": "HTTP requests per second",
       "type": "timeseries"
     },
     {
@@ -215,6 +217,6 @@
   "timezone": "",
   "title": "Wallet Interaction Service",
   "uid": "da840768-d79b-46c5-8c09-95bb9e2a148b",
-  "version": 3,
+  "version": 4,
   "weekStart": ""
 }
