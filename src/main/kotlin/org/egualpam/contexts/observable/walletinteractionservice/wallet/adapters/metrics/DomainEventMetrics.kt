@@ -4,7 +4,7 @@ import io.micrometer.core.instrument.Counter
 import io.micrometer.core.instrument.MeterRegistry
 import org.egualpam.contexts.observable.walletinteractionservice.shared.application.domain.DomainEvent
 
-class WalletDomainEventsMetrics(
+class DomainEventMetrics(
   private val meterRegistry: MeterRegistry
 ) {
   fun published(domainEvent: DomainEvent) {
