@@ -1,7 +1,9 @@
 package org.egualpam.contexts.observable.walletinteractionservice.wallet.adapters.configuration
 
+import io.micrometer.core.instrument.MeterRegistry
 import org.egualpam.contexts.observable.walletinteractionservice.shared.application.domain.DomainEvent
 import org.egualpam.contexts.observable.walletinteractionservice.shared.application.domain.EventBus
+import org.egualpam.contexts.observable.walletinteractionservice.wallet.adapters.metrics.WalletDomainEventsMetrics
 import org.egualpam.contexts.observable.walletinteractionservice.wallet.adapters.out.depositexists.DepositExistsMySQLAdapter
 import org.egualpam.contexts.observable.walletinteractionservice.wallet.adapters.out.shared.springdatajdbc.WalletCrudRepository
 import org.egualpam.contexts.observable.walletinteractionservice.wallet.adapters.out.walletexists.WalletExistsMySQLAdapter
@@ -48,14 +50,20 @@ class WalletPortsAndAdaptersConfiguration {
   ): DepositExists = DepositExistsMySQLAdapter(jdbcTemplate)
 
   @Bean
-  fun fakeEventBus(): EventBus {
+  fun fakeEventBus(walletDomainEventsMetrics: WalletDomainEventsMetrics): EventBus {
     return object : EventBus {
       private val logger: Logger = LoggerFactory.getLogger(this::class.java)
       override fun publish(domainEvents: Set<DomainEvent>) {
         domainEvents.forEach {
+          walletDomainEventsMetrics.published(it)
           logger.info("Fake publishing of event [${it.javaClass.simpleName}] with id [${it.id().value}]")
         }
       }
     }
   }
+
+  @Bean
+  fun walletDomainEventsMetrics(meterRegistry: MeterRegistry) =
+      WalletDomainEventsMetrics(meterRegistry)
 }
+
