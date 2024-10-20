@@ -12,5 +12,20 @@
 ./mvnw clean verify
 ```
 
+🚀 Run services
+<br>
+
+```shell script
+./mvnw clean package
+docker compose up -d
+```
+
+🌃 Stop services
+<br>
+
+```shell script
+docker compose down
+```
+
 📣 This project has been structured following Hexagonal Architecture principles:
 https://alistair.cockburn.us/hexagonal-architecture
