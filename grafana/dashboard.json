@@ -140,6 +140,7 @@
           "color": {
             "mode": "thresholds"
           },
+          "displayName": "${__field.labels.type}",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -188,6 +189,7 @@
           },
           "editorMode": "builder",
           "expr": "wallet_domain_events_published_total",
+          "format": "time_series",
           "instant": false,
           "legendFormat": "{{type}}",
           "range": true,
