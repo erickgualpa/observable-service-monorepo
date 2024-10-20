@@ -3,7 +3,7 @@ package org.egualpam.contexts.observable.walletinteractionservice.shared.applica
 import org.egualpam.contexts.observable.walletinteractionservice.shared.application.domain.exceptions.InvalidAggregateId
 import java.util.UUID
 
-open class AggregateId(value: String) {
+open class AggregateId(private val value: String) {
   init {
     try {
       UUID.fromString(value)
@@ -11,4 +11,6 @@ open class AggregateId(value: String) {
       throw InvalidAggregateId(value)
     }
   }
+
+  fun value() = value
 }

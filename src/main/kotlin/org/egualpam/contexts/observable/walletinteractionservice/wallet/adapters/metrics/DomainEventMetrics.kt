@@ -9,6 +9,7 @@ class DomainEventMetrics(
 ) {
   fun published(domainEvent: DomainEvent) {
     Counter.builder("wallet_domain_events_published")
+        .tag("aggregate_id", domainEvent.aggregateId().value())
         .tag("type", domainEvent.javaClass.simpleName)
         .register(meterRegistry)
         .increment()
