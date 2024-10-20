@@ -144,16 +144,13 @@
           },
           "displayName": "${__field.labels.type}",
           "mappings": [],
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           }
@@ -210,7 +207,7 @@
     "list": []
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-1m",
     "to": "now"
   },
   "timepicker": {},
