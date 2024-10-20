@@ -44,7 +44,7 @@ function requestDeposit() {
     local PUT_DEPOSIT_REQUEST="\
     { \
       \"deposit\": { \
-        \"id\": \"$WALLET_ID\", \
+        \"id\": \"$DEPOSIT_ID\", \
         \"amount\": \"$DEPOSIT_AMOUNT\", \
         \"currency\": \"$DEPOSIT_CURRENCY\" \
       } \
