@@ -1,7 +1,6 @@
 package org.egualpam.contexts.observable.walletinteractionservice.wallet.adapters.metrics
 
 import io.micrometer.core.instrument.Counter
-import io.micrometer.core.instrument.DistributionSummary
 import io.micrometer.core.instrument.MeterRegistry
 import org.egualpam.contexts.observable.walletinteractionservice.shared.application.domain.DomainEvent
 
