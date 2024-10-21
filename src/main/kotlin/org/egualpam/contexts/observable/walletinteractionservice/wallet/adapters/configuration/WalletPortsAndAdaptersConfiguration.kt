@@ -1,8 +1,8 @@
 package org.egualpam.contexts.observable.walletinteractionservice.wallet.adapters.configuration
 
 import io.micrometer.core.instrument.MeterRegistry
-import org.egualpam.contexts.observable.walletinteractionservice.shared.application.domain.EventBus
-import org.egualpam.contexts.observable.walletinteractionservice.wallet.adapters.eventbus.FakeEventBus
+import org.egualpam.contexts.observable.walletinteractionservice.shared.application.ports.out.EventBus
+import org.egualpam.contexts.observable.walletinteractionservice.wallet.adapters.out.eventbus.FakeEventBus
 import org.egualpam.contexts.observable.walletinteractionservice.wallet.adapters.metrics.DomainEventMetrics
 import org.egualpam.contexts.observable.walletinteractionservice.wallet.adapters.out.depositexists.DepositExistsMySQLAdapter
 import org.egualpam.contexts.observable.walletinteractionservice.wallet.adapters.out.shared.springdatajdbc.WalletCrudRepository

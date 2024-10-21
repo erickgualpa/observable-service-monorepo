@@ -1,6 +1,6 @@
 package org.egualpam.contexts.observable.walletinteractionservice.wallet.adapters.configuration
 
-import org.egualpam.contexts.observable.walletinteractionservice.shared.application.domain.EventBus
+import org.egualpam.contexts.observable.walletinteractionservice.shared.application.ports.out.EventBus
 import org.egualpam.contexts.observable.walletinteractionservice.wallet.application.ports.out.DepositExists
 import org.egualpam.contexts.observable.walletinteractionservice.wallet.application.ports.out.WalletExists
 import org.egualpam.contexts.observable.walletinteractionservice.wallet.application.ports.out.WalletRepository

@@ -3,7 +3,7 @@ package org.egualpam.contexts.observable.walletinteractionservice.wallet.applica
 import org.apache.commons.lang3.RandomStringUtils.randomAlphabetic
 import org.assertj.core.api.Assertions.assertThat
 import org.egualpam.contexts.observable.walletinteractionservice.shared.application.domain.DomainEvent
-import org.egualpam.contexts.observable.walletinteractionservice.shared.application.domain.EventBus
+import org.egualpam.contexts.observable.walletinteractionservice.shared.application.ports.out.EventBus
 import org.egualpam.contexts.observable.walletinteractionservice.wallet.application.domain.Account
 import org.egualpam.contexts.observable.walletinteractionservice.wallet.application.domain.DepositId
 import org.egualpam.contexts.observable.walletinteractionservice.wallet.application.domain.DepositProcessed

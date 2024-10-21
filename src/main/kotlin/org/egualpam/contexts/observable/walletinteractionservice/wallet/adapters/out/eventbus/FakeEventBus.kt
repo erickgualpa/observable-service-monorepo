@@ -1,7 +1,7 @@
-package org.egualpam.contexts.observable.walletinteractionservice.wallet.adapters.eventbus
+package org.egualpam.contexts.observable.walletinteractionservice.wallet.adapters.out.eventbus
 
 import org.egualpam.contexts.observable.walletinteractionservice.shared.application.domain.DomainEvent
-import org.egualpam.contexts.observable.walletinteractionservice.shared.application.domain.EventBus
+import org.egualpam.contexts.observable.walletinteractionservice.shared.application.ports.out.EventBus
 import org.egualpam.contexts.observable.walletinteractionservice.wallet.adapters.metrics.DomainEventMetrics
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

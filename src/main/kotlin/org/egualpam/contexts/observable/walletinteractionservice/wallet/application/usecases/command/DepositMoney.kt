@@ -1,6 +1,6 @@
 package org.egualpam.contexts.observable.walletinteractionservice.wallet.application.usecases.command
 
-import org.egualpam.contexts.observable.walletinteractionservice.shared.application.domain.EventBus
+import org.egualpam.contexts.observable.walletinteractionservice.shared.application.ports.out.EventBus
 import org.egualpam.contexts.observable.walletinteractionservice.wallet.application.domain.DepositId
 import org.egualpam.contexts.observable.walletinteractionservice.wallet.application.domain.WalletId
 import org.egualpam.contexts.observable.walletinteractionservice.wallet.application.domain.exceptions.WalletNotExists
