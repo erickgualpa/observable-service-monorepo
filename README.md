@@ -5,6 +5,10 @@
 [![](https://img.shields.io/badge/Java%20Version-21-blue)](/pom.xml)
 [![](https://img.shields.io/badge/Kotlin%20Version-2.0.0-blue)](/pom.xml)
 
+🎮 Play with the API using [SpringDoc OpenAPI Swagger UI](http://localhost:8080/swagger-ui/index.html) and
+review metrics from the [Grafana dashboard](http://localhost:3000/d/da840768-d79b-46c5-8c09-95bb9e2a148b/wallet-interaction-service?orgId=1&refresh=5s):
+![Grafana dashboard](etc/grafana-dashboard.png)
+
 🧪 Run tests
 <br>
 
@@ -26,10 +30,6 @@ docker compose up -d
 ```shell script
 docker compose down --rmi local
 ```
-
-🎮 Play with the API using [SpringDoc OpenAPI Swagger UI](http://localhost:8080/swagger-ui/index.html) and
-review metrics in [Grafana dashboard](http://localhost:3000/d/da840768-d79b-46c5-8c09-95bb9e2a148b/wallet-interaction-service?orgId=1&refresh=5s):
-![Grafana dashboard](etc/grafana-dashboard.png)
 
 📣 This project has been structured following Hexagonal Architecture principles:
 https://alistair.cockburn.us/hexagonal-architecture
