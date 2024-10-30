@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: 5
+      author: erickgualpam
+      changes:
+        - sql:
+            sql: |
+              CREATE USER 'grafanaReader' IDENTIFIED BY 'grafanaPassword';
+              GRANT SELECT ON wis.* TO 'grafanaReader';
