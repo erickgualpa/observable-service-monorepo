@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
       id: 3
-      author: erickgualpam
+      author: wallet-interaction-service
       changes:
         - sql:
             sql: |
