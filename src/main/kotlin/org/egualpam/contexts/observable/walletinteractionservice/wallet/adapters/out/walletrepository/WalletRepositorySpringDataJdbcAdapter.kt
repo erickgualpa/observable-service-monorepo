@@ -35,32 +35,6 @@ open class WalletRepositorySpringDataJdbcAdapter(
     }
   }
 
-  private fun saveWallet(wallet: Wallet) {
-    val sql = """
-      INSERT IGNORE INTO wallet(entity_id, created_at)
-      VALUES(:entityId, :createdAt)
-    """
-    val sqlParameterSource = MapSqlParameterSource()
-    sqlParameterSource.addValue("entityId", wallet.getId().value)
-    sqlParameterSource.addValue("createdAt", Instant.now())
-    jdbcTemplate.update(sql, sqlParameterSource)
-  }
-
-  private fun saveWalletOwner(wallet: Wallet) {
-    val sql = """
-      INSERT IGNORE INTO owner(entity_id, created_at, username, wallet_entity_id, wallet)
-      SELECT :entityId, :createdAt, :username, :walletEntityId, id
-      FROM wallet
-      WHERE entity_id=:walletEntityId
-    """
-    val sqlParameterSource = MapSqlParameterSource()
-    sqlParameterSource.addValue("entityId", wallet.getOwnerId().value)
-    sqlParameterSource.addValue("createdAt", Instant.now())
-    sqlParameterSource.addValue("username", wallet.getOwnerUsername().value)
-    sqlParameterSource.addValue("walletEntityId", wallet.getId().value)
-    jdbcTemplate.update(sql, sqlParameterSource)
-  }
-
   private fun saveAccount(account: Account, walletId: WalletId) {
     val sql = """
       INSERT IGNORE INTO account(entity_id, created_at, currency, wallet_entity_id, wallet)
