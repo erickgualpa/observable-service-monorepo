@@ -1,0 +1,12 @@
+apiVersion: 1
+contactPoints:
+  - orgId: 1
+    name: egualpam
+    receivers:
+      - uid: b4b897a8-25fa-4006-88da-8d03cc80b315
+        type: email
+        disableResolveMessage: false
+        settings:
+          addresses: egualpam@egualpam
+          singleEmail: false
+        secureFields:
