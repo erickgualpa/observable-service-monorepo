@@ -37,6 +37,14 @@ services:
     networks:
       - backend
 
+  mailcatcher:
+    image: dockage/mailcatcher
+    ports:
+      - 1080:1080
+      - 1025:1025
+    networks:
+      - backend
+
   grafana:
     image: grafana/grafana:10.0.1
     ports:
@@ -44,8 +52,11 @@ services:
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=egualpam
+      - GF_SMTP_ENABLED=true
+      - GF_SMTP_HOST=mailcatcher:1025
     depends_on:
       - prometheus
+      - mailcatcher
     volumes:
       - ./grafana/setup/provisioning:/etc/grafana/provisioning
     healthcheck:
