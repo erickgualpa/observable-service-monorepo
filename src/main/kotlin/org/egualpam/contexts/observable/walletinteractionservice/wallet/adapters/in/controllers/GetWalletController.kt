@@ -1,6 +1,7 @@
 package org.egualpam.contexts.observable.walletinteractionservice.wallet.adapters.`in`.controllers
 
 import org.egualpam.contexts.observable.walletinteractionservice.shared.application.domain.exceptions.InvalidAggregateId
+import org.egualpam.contexts.observable.walletinteractionservice.wallet.adapters.metrics.ErrorMetrics
 import org.egualpam.contexts.observable.walletinteractionservice.wallet.application.domain.exceptions.WalletNotExists
 import org.egualpam.contexts.observable.walletinteractionservice.wallet.application.usecases.query.RetrieveWallet
 import org.egualpam.contexts.observable.walletinteractionservice.wallet.application.usecases.query.RetrieveWalletQuery
@@ -18,7 +19,8 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/v1/wallets")
 @RestController
 class GetWalletController(
-  private var retrieveWallet: RetrieveWallet
+  private val retrieveWallet: RetrieveWallet,
+  private val errorMetrics: ErrorMetrics,
 ) {
   private val logger: Logger = getLogger(this::class.java)
 
@@ -30,6 +32,7 @@ class GetWalletController(
       }
       ok(GetWalletResponse.from(walletDto))
     } catch (e: RuntimeException) {
+      errorMetrics.error(e)
       return when (e.javaClass) {
         InvalidAggregateId::class.java, WalletNotExists::class.java -> {
           logger.warn(e.message)

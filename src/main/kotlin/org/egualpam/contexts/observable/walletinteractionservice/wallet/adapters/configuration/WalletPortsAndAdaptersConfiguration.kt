@@ -2,9 +2,10 @@ package org.egualpam.contexts.observable.walletinteractionservice.wallet.adapter
 
 import io.micrometer.core.instrument.MeterRegistry
 import org.egualpam.contexts.observable.walletinteractionservice.shared.application.ports.out.EventBus
-import org.egualpam.contexts.observable.walletinteractionservice.wallet.adapters.out.eventbus.FakeEventBus
 import org.egualpam.contexts.observable.walletinteractionservice.wallet.adapters.metrics.DomainEventMetrics
+import org.egualpam.contexts.observable.walletinteractionservice.wallet.adapters.metrics.ErrorMetrics
 import org.egualpam.contexts.observable.walletinteractionservice.wallet.adapters.out.depositexists.DepositExistsMySQLAdapter
+import org.egualpam.contexts.observable.walletinteractionservice.wallet.adapters.out.eventbus.FakeEventBus
 import org.egualpam.contexts.observable.walletinteractionservice.wallet.adapters.out.shared.springdatajdbc.WalletCrudRepository
 import org.egualpam.contexts.observable.walletinteractionservice.wallet.adapters.out.walletexists.WalletExistsMySQLAdapter
 import org.egualpam.contexts.observable.walletinteractionservice.wallet.adapters.out.walletrepository.WalletRepositorySpringDataJdbcAdapter
@@ -54,5 +55,8 @@ class WalletPortsAndAdaptersConfiguration {
   @Bean
   fun walletDomainEventsMetrics(meterRegistry: MeterRegistry) =
       DomainEventMetrics(meterRegistry)
+
+  @Bean
+  fun walletErrorMetrics(meterRegistry: MeterRegistry) = ErrorMetrics(meterRegistry)
 }
 

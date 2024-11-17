@@ -163,12 +163,78 @@
       "type": "gauge"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "${__field.labels.type}",
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 9
+      },
+      "id": 9,
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.0.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "builder",
+          "expr": "wallet_error_occurred_total",
+          "format": "time_series",
+          "instant": false,
+          "legendFormat": "{{type}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Errors through time",
+      "type": "bargauge"
+    },
+    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 9
+        "y": 17
       },
       "id": 7,
       "panels": [],
@@ -236,7 +302,7 @@
         "h": 16,
         "w": 12,
         "x": 0,
-        "y": 10
+        "y": 18
       },
       "id": 4,
       "options": {
@@ -308,7 +374,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 10
+        "y": 18
       },
       "id": 6,
       "options": {
@@ -373,6 +439,6 @@
   "timezone": "",
   "title": "Wallet Interaction Service",
   "uid": "da840768-d79b-46c5-8c09-95bb9e2a148b",
-  "version": 2,
+  "version": 1,
   "weekStart": ""
 }
