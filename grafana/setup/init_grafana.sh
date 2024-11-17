@@ -13,15 +13,22 @@ curl -v -s -X POST "${GRAFANA_URL}/api/dashboards/db" \
   -H "Content-Type: application/json" \
   -d "$CREATE_DASHBOARD_REQUEST"
 
-# TODO: This works only for a single alert rule. Update to handle multiple items.
-## LOAD ALERTS RULE
+## LOAD 'Platform' folder
 PLATFORM_FOLDER=$(cat etc/grafana/init/folder-platform.json)
 curl -v -s -X POST "${GRAFANA_URL}/api/folders" \
   -H "Content-Type: application/json" \
   -d "$PLATFORM_FOLDER"
 
-ALERT_RULE=$(cat etc/grafana/init/alert-rule-request-per-second-rate-warn.json)
+# TODO: This works only for a single alert rule. Update to handle multiple items.
+## LOAD ALERTS RULE
+ALERT_RULE_REQUEST_PER_SECOND_RATE_WARN=$(cat etc/grafana/init/alert-rule-request-per-second-rate-warn.json)
 curl -v -s -X POST "${GRAFANA_URL}/api/v1/provisioning/alert-rules" \
   -H "X-Disable-Provenance: true" \
   -H "Content-Type: application/json" \
-  -d "$ALERT_RULE"
+  -d "$ALERT_RULE_REQUEST_PER_SECOND_RATE_WARN"
+
+ALERT_RULE_ERROR_OCCURRED=$(cat etc/grafana/init/alert-rule-error-occurred.json)
+curl -v -s -X POST "${GRAFANA_URL}/api/v1/provisioning/alert-rules" \
+  -H "X-Disable-Provenance: true" \
+  -H "Content-Type: application/json" \
+  -d "$ALERT_RULE_ERROR_OCCURRED"
