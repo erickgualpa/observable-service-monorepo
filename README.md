@@ -13,7 +13,7 @@
 docker compose up -d
 ```
 
-🎮 Run massive deposits
+🎮 Request massive deposits
 <br>
 
 ```shell script
