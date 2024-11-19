@@ -329,7 +329,7 @@
           },
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "rate(http_server_requests_seconds_count{uri=~\"/v1/wallets/{wallet-id}|/v1/wallets|/v1/wallets/{wallet-id}/deposit\"}[1m])",
+          "expr": "rate(http_server_requests_seconds_count{uri=~\"/v1/wallets/{wallet-id}|/v1/wallets|/v1/wallets/{wallet-id}/deposit|/v2/wallets/{wallet-id}/deposit\"}[1m])",
           "instant": false,
           "legendFormat": "{{method}} {{uri}} {{status}}",
           "range": true,
