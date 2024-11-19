@@ -4,6 +4,7 @@ import org.apache.commons.lang3.RandomStringUtils.randomAlphabetic
 import org.egualpam.contexts.observable.walletinteractionservice.shared.adapters.WalletInteractionServiceApplication
 import org.egualpam.contexts.observable.walletinteractionservice.shared.application.domain.exceptions.InvalidAggregateId
 import org.egualpam.contexts.observable.walletinteractionservice.shared.application.domain.exceptions.InvalidDomainEntityId
+import org.egualpam.contexts.observable.walletinteractionservice.wallet.adapters.metrics.ErrorMetrics
 import org.egualpam.contexts.observable.walletinteractionservice.wallet.application.domain.OwnerUsername
 import org.egualpam.contexts.observable.walletinteractionservice.wallet.application.domain.exceptions.AccountCurrencyIsNotSupported
 import org.egualpam.contexts.observable.walletinteractionservice.wallet.application.domain.exceptions.OwnerUsernameAlreadyExists
@@ -24,13 +25,15 @@ import java.util.UUID.randomUUID
 
 @ContextConfiguration(classes = [WalletInteractionServiceApplication::class])
 @WebMvcTest(PutWalletController::class)
-class PutWalletControllerTest {
-
+class PutWalletControllerShould {
   @MockBean
   private lateinit var transactionTemplate: TransactionTemplate
 
   @MockBean
   private lateinit var createWallet: CreateWallet
+
+  @MockBean
+  private lateinit var errorMetrics: ErrorMetrics
 
   @Autowired
   private lateinit var mockMvc: MockMvc
