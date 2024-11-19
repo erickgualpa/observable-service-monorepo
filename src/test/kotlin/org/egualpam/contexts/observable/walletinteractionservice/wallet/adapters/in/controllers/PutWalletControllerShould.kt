@@ -12,6 +12,7 @@ import org.egualpam.contexts.observable.walletinteractionservice.wallet.applicat
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.any
 import org.mockito.kotlin.given
+import org.mockito.kotlin.verify
 import org.mockito.kotlin.willThrow
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
@@ -68,6 +69,8 @@ class PutWalletControllerShould {
     }.andExpect {
       status { isConflict() }
     }
+
+    verify(errorMetrics).error(any<OwnerUsernameAlreadyExists>())
   }
 
   @Test
@@ -100,6 +103,8 @@ class PutWalletControllerShould {
     }.andExpect {
       status { isBadRequest() }
     }
+
+    verify(errorMetrics).error(any<InvalidAggregateId>())
   }
 
   @Test
@@ -132,6 +137,8 @@ class PutWalletControllerShould {
     }.andExpect {
       status { isBadRequest() }
     }
+
+    verify(errorMetrics).error(any<InvalidDomainEntityId>())
   }
 
   @Test
@@ -164,5 +171,7 @@ class PutWalletControllerShould {
     }.andExpect {
       status { isBadRequest() }
     }
+
+    verify(errorMetrics).error(any<AccountCurrencyIsNotSupported>())
   }
 }
