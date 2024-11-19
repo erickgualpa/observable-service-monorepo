@@ -1,17 +1,12 @@
 package org.egualpam.contexts.observable.walletinteractionservice.wallet.adapters.`in`.controllers
 
-import org.egualpam.contexts.observable.walletinteractionservice.shared.application.domain.exceptions.InvalidAggregateId
-import org.egualpam.contexts.observable.walletinteractionservice.shared.application.domain.exceptions.InvalidDomainEntityId
 import org.egualpam.contexts.observable.walletinteractionservice.wallet.adapters.metrics.ErrorMetrics
-import org.egualpam.contexts.observable.walletinteractionservice.wallet.application.domain.exceptions.AccountCurrencyIsNotSupported
 import org.egualpam.contexts.observable.walletinteractionservice.wallet.application.usecases.command.DepositMoney
 import org.egualpam.contexts.observable.walletinteractionservice.wallet.application.usecases.command.DepositMoneyCommand
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory.getLogger
 import org.springframework.http.ResponseEntity
 import org.springframework.http.ResponseEntity.accepted
-import org.springframework.http.ResponseEntity.badRequest
-import org.springframework.http.ResponseEntity.internalServerError
 import org.springframework.transaction.support.TransactionTemplate
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PutMapping
@@ -40,28 +35,16 @@ class PutWalletDepositControllerV2(
         depositAmount = putWalletDepositRequest.deposit.amount,
         depositCurrency = putWalletDepositRequest.deposit.currency,
     )
-    return try {
-      runAsync {
+    runAsync {
+      try {
         transactionTemplate.executeWithoutResult {
           depositMoney.execute(depositMoneyCommand)
         }
-      }
-      accepted().build()
-    } catch (e: RuntimeException) {
-      errorMetrics.error(e)
-      when (e.javaClass) {
-        InvalidAggregateId::class.java,
-        InvalidDomainEntityId::class.java,
-        AccountCurrencyIsNotSupported::class.java -> {
-          logger.warn(e.message)
-          badRequest().build()
-        }
-
-        else -> {
-          logger.error("Unexpected error processing request [$putWalletDepositRequest]:", e)
-          internalServerError().build()
-        }
+      } catch (e: Exception) {
+        errorMetrics.error(e)
+        logger.error("Unexpected error processing request [$putWalletDepositRequest]:", e)
       }
     }
+    return accepted().build()
   }
 }
