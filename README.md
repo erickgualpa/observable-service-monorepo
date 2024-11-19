@@ -17,7 +17,7 @@ docker compose up -d
 <br>
 
 ```shell script
-./massive-deposits.sh
+/bin/bash ./massive-deposits-async.sh
 ```
 
 Or play with the API using [SpringDoc OpenAPI Swagger UI](http://localhost:8080/swagger-ui/index.html) and review
