@@ -40,7 +40,7 @@ class PutWalletDepositControllerV2(
         transactionTemplate.executeWithoutResult {
           depositMoney.execute(depositMoneyCommand)
         }
-      } catch (e: Exception) {
+      } catch (e: RuntimeException) {
         errorMetrics.error(e)
         logger.error("Unexpected error processing request [$putWalletDepositRequest]:", e)
       }
