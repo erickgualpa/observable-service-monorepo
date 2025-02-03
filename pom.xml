@@ -65,9 +65,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.liquibase</groupId>
-            <artifactId>liquibase-core</artifactId>
-            <version>4.28.0</version>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-mysql</artifactId>
+            <version>11.1.1</version>
         </dependency>
         <!-- End of Database dependencies -->
 
