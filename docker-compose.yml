@@ -19,7 +19,7 @@ services:
 
   wis-app:
     build:
-      dockerfile: Dockerfile
+      dockerfile: backend/Dockerfile
     ports:
       - '8080:8080'
     depends_on:

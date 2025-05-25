@@ -9,8 +9,7 @@
 <br>
 
 ```shell script
-./mvnw clean package
-docker compose up -d
+/bin/bash ./run.sh
 ```
 
 🎮 Request massive deposits
@@ -29,7 +28,7 @@ the [Grafana dashboard](http://localhost:3000/d/da840768-d79b-46c5-8c09-95bb9e2a
 <br>
 
 ```shell script
-docker compose down --rmi local
+/bin/bash ./stop.sh
 ```
 
 ## 📣 Disclaimer
