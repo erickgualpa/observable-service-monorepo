@@ -1,4 +1,4 @@
-# 🧙‍♂️🔎 [Observable] Wallet Interaction Service 💰💸
+# 🧙‍♂️🔎 Observable Service Monorepo 🛒🤑
 
 ![CI/CD status](https://github.com/erickgualpa/observable-wallet-interaction-service/actions/workflows/maven.yml/badge.svg)
 [![](https://img.shields.io/badge/Spring%20Boot%20Version-3.5.0-blue)](/pom.xml)
