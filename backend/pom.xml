@@ -8,10 +8,10 @@
         <version>3.5.0</version>
         <relativePath/>
     </parent>
-    <groupId>org.egualpam.contexts.observable</groupId>
-    <artifactId>wallet-interaction-service</artifactId>
+    <groupId>org.egualpam.contexts.sales</groupId>
+    <artifactId>order-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>wallet-interaction-service</name>
+    <name>order-service</name>
     <url/>
 
     <properties>

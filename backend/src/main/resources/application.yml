@@ -1,6 +1,6 @@
 spring:
   application:
-    name: observable-wallet-interaction-service
+    name: order-service
   datasource:
     url: jdbc:mysql://mysql:3306/wis
     # TODO: Avoid root user from application

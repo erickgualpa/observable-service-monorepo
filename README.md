@@ -9,14 +9,14 @@
 <br>
 
 ```shell script
-/bin/bash ./run.sh
+./run.sh
 ```
 
 🎮 Request massive deposits
 <br>
 
 ```shell script
-/bin/bash ./massive-deposits-async.sh
+./massive-deposits-async.sh
 ```
 
 Or play with the API using [SpringDoc OpenAPI Swagger UI](http://localhost:8080/swagger-ui/index.html) and review
@@ -28,14 +28,5 @@ the [Grafana dashboard](http://localhost:3000/d/da840768-d79b-46c5-8c09-95bb9e2a
 <br>
 
 ```shell script
-/bin/bash ./stop.sh
+./stop.sh
 ```
-
-## 📣 Disclaimer
-
-This repository is a variant
-of [erickgualpa/wallet-interaction-service](https://github.com/erickgualpa/wallet-interaction-service). The original project contains a
-backend project designed to showcase modern development practices using a Kotlin and Spring Boot stack.
-
-Unlike the original repository, this version focuses specifically on integrating observability tools into a backend
-application. For the most up-to-date and feature-rich version of the code, please refer to the original repository.
