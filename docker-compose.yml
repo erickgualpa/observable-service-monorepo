@@ -17,7 +17,7 @@ services:
     networks:
       - backend
 
-  wis-app:
+  backend-service:
     build:
       dockerfile: backend/Dockerfile
     ports:
