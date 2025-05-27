@@ -1,64 +1,36 @@
 package org.egualpam.contexts.observable.journey
 
-import org.apache.commons.lang3.RandomStringUtils.randomAlphabetic
 import org.egualpam.contexts.observable.shared.adapters.AbstractIntegrationTest
 import org.junit.jupiter.api.Test
 import org.testcontainers.shaded.com.google.common.net.HttpHeaders.CONTENT_TYPE
 import java.util.UUID.randomUUID
-import kotlin.random.Random.Default.nextDouble
 
 class FullJourneyTest : AbstractIntegrationTest() {
+
   @Test
   fun `full journey`() {
-    val walletId = randomUUID().toString()
-    val currency = "EUR"
+    val orderId = randomUUID().toString()
 
-    val createWalletRequest = """
+    val createOrderRequest = """
       {
-        "wallet": {
-          "id": "$walletId",
-          "owner": {
-            "id": "${randomUUID()}",
-            "username": "${randomAlphabetic(10)}"
-          },
-          "account": {
-            "id": "${randomUUID()}",
-            "currency": "$currency"
-          }
+        "order": {
+          "id": "$orderId"
         }
       }
     """
 
     webTestClient.put()
-        .uri("/v1/wallets")
+        .uri("/v1/orders")
         .header(CONTENT_TYPE, "application/json")
-        .bodyValue(createWalletRequest)
+        .bodyValue(createOrderRequest)
         .exchange()
         .expectStatus()
         .isNoContent
 
     webTestClient.get()
-        .uri("/v1/wallets/{wallet-id}", walletId)
+        .uri("/v1/orders/{order-id}", orderId)
         .exchange()
         .expectStatus()
         .isOk
-
-    val walletDepositRequest = """
-      {
-        "deposit": {
-          "id": "${randomUUID()}",
-          "amount": "${nextDouble(10.0, 10000.0)}",
-          "currency": "$currency"
-        }
-      }
-    """
-
-    webTestClient.put()
-        .uri("/v1/wallets/{wallet-id}/deposit", walletId)
-        .header(CONTENT_TYPE, "application/json")
-        .bodyValue(walletDepositRequest)
-        .exchange()
-        .expectStatus()
-        .isNoContent
   }
 }

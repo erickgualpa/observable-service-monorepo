@@ -8,6 +8,8 @@ import org.springframework.boot.runApplication
       "org.egualpam.contexts.observable.shared.adapters.configuration",
       "org.egualpam.contexts.observable.wallet.adapters.configuration",
       "org.egualpam.contexts.observable.wallet.adapters.in.controllers",
+      "org.egualpam.contexts.observable.order.adapters.configuration",
+      "org.egualpam.contexts.observable.order.adapters.in",
     ],
 )
 class WalletInteractionServiceApplication
