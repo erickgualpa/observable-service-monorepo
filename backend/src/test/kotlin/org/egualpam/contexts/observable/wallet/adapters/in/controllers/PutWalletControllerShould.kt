@@ -1,7 +1,7 @@
 package org.egualpam.contexts.observable.wallet.adapters.`in`.controllers
 
 import org.apache.commons.lang3.RandomStringUtils.randomAlphabetic
-import org.egualpam.contexts.observable.shared.adapters.WalletInteractionServiceApplication
+import org.egualpam.contexts.observable.shared.adapters.SharedApplication
 import org.egualpam.contexts.observable.shared.application.domain.exceptions.InvalidAggregateId
 import org.egualpam.contexts.observable.shared.application.domain.exceptions.InvalidDomainEntityId
 import org.egualpam.contexts.observable.wallet.adapters.metrics.ErrorMetrics
@@ -24,7 +24,7 @@ import org.springframework.test.web.servlet.put
 import org.springframework.transaction.support.TransactionTemplate
 import java.util.UUID.randomUUID
 
-@ContextConfiguration(classes = [WalletInteractionServiceApplication::class])
+@ContextConfiguration(classes = [SharedApplication::class])
 @WebMvcTest(PutWalletController::class)
 class PutWalletControllerShould {
   @MockitoBean

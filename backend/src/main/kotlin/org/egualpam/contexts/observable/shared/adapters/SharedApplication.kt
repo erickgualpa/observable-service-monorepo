@@ -12,8 +12,8 @@ import org.springframework.boot.runApplication
       "org.egualpam.contexts.observable.order.adapters.in",
     ],
 )
-class WalletInteractionServiceApplication
+class SharedApplication
 
 fun main(args: Array<String>) {
-  runApplication<WalletInteractionServiceApplication>(*args)
+  runApplication<SharedApplication>(*args)
 }

@@ -19,7 +19,7 @@ import java.io.File
 @ActiveProfiles("integration-test")
 @SpringBootTest(
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
-    classes = [WalletInteractionServiceApplication::class],
+    classes = [SharedApplication::class],
 )
 abstract class AbstractIntegrationTest {
 
