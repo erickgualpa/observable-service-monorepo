@@ -2,9 +2,9 @@ package org.egualpam.contexts.observable.wallet.adapters.`in`.controllers
 
 import org.apache.commons.lang3.RandomStringUtils.randomAlphabetic
 import org.egualpam.contexts.observable.shared.adapters.SharedApplication
+import org.egualpam.contexts.observable.shared.adapters.metrics.ErrorMetrics
 import org.egualpam.contexts.observable.shared.application.domain.exceptions.InvalidAggregateId
 import org.egualpam.contexts.observable.shared.application.domain.exceptions.InvalidDomainEntityId
-import org.egualpam.contexts.observable.wallet.adapters.metrics.ErrorMetrics
 import org.egualpam.contexts.observable.wallet.application.domain.OwnerUsername
 import org.egualpam.contexts.observable.wallet.application.domain.exceptions.AccountCurrencyIsNotSupported
 import org.egualpam.contexts.observable.wallet.application.domain.exceptions.OwnerUsernameAlreadyExists

@@ -1,8 +1,8 @@
 package org.egualpam.contexts.observable.wallet.adapters.`in`.controllers
 
+import org.egualpam.contexts.observable.shared.adapters.metrics.ErrorMetrics
 import org.egualpam.contexts.observable.shared.application.domain.exceptions.InvalidAggregateId
 import org.egualpam.contexts.observable.shared.application.domain.exceptions.InvalidDomainEntityId
-import org.egualpam.contexts.observable.wallet.adapters.metrics.ErrorMetrics
 import org.egualpam.contexts.observable.wallet.application.domain.exceptions.AccountCurrencyIsNotSupported
 import org.egualpam.contexts.observable.wallet.application.domain.exceptions.OwnerUsernameAlreadyExists
 import org.egualpam.contexts.observable.wallet.application.usecases.command.CreateWallet
@@ -23,9 +23,9 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/v1/wallets")
 @RestController
 class PutWalletController(
-    private val transactionTemplate: TransactionTemplate,
-    private val createWallet: CreateWallet,
-    private val errorMetrics: ErrorMetrics,
+  private val transactionTemplate: TransactionTemplate,
+  private val createWallet: CreateWallet,
+  private val errorMetrics: ErrorMetrics,
 ) {
   private val logger: Logger = getLogger(this::class.java)
 

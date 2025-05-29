@@ -1,6 +1,6 @@
 package org.egualpam.contexts.observable.wallet.adapters.`in`.controllers
 
-import org.egualpam.contexts.observable.wallet.adapters.metrics.ErrorMetrics
+import org.egualpam.contexts.observable.shared.adapters.metrics.ErrorMetrics
 import org.egualpam.contexts.observable.wallet.application.usecases.command.DepositMoney
 import org.egualpam.contexts.observable.wallet.application.usecases.command.DepositMoneyCommand
 import org.slf4j.Logger
@@ -18,9 +18,9 @@ import java.util.concurrent.CompletableFuture.runAsync
 @RequestMapping("/v2/wallets")
 @RestController
 class PutWalletDepositControllerV2(
-    private val transactionTemplate: TransactionTemplate,
-    private val depositMoney: DepositMoney,
-    private val errorMetrics: ErrorMetrics,
+  private val transactionTemplate: TransactionTemplate,
+  private val depositMoney: DepositMoney,
+  private val errorMetrics: ErrorMetrics,
 ) {
   private val logger: Logger = getLogger(this::class.java)
 

@@ -1,16 +1,16 @@
-package org.egualpam.contexts.observable.wallet.adapters.out.eventbus
+package org.egualpam.contexts.observable.shared.adapters.out
 
+import org.egualpam.contexts.observable.shared.adapters.metrics.DomainEventMetrics
 import org.egualpam.contexts.observable.shared.application.domain.DomainEvent
 import org.egualpam.contexts.observable.shared.application.ports.out.EventBus
-import org.egualpam.contexts.observable.wallet.adapters.metrics.DomainEventMetrics
 import org.slf4j.Logger
-import org.slf4j.LoggerFactory
+import org.slf4j.LoggerFactory.getLogger
 
 class FakeEventBus(
-    private val domainEventMetrics: DomainEventMetrics,
+  private val domainEventMetrics: DomainEventMetrics,
 ) : EventBus {
 
-  private val logger: Logger = LoggerFactory.getLogger(this::class.java)
+  private val logger: Logger = getLogger(this::class.java)
 
   override fun publish(domainEvents: Set<DomainEvent>) {
     domainEvents.forEach {

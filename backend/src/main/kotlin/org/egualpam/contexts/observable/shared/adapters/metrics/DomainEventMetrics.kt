@@ -1,4 +1,4 @@
-package org.egualpam.contexts.observable.wallet.adapters.metrics
+package org.egualpam.contexts.observable.shared.adapters.metrics
 
 import io.micrometer.core.instrument.Counter
 import io.micrometer.core.instrument.MeterRegistry
@@ -8,7 +8,7 @@ class DomainEventMetrics(
   private val meterRegistry: MeterRegistry
 ) {
   fun published(domainEvent: DomainEvent) {
-    Counter.builder("wallet_domain_events_published")
+    Counter.builder("application_domain_events_published")
         .tag("type", domainEvent.javaClass.simpleName)
         .register(meterRegistry)
         .increment()

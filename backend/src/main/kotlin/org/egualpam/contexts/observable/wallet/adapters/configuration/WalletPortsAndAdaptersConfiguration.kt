@@ -1,11 +1,11 @@
 package org.egualpam.contexts.observable.wallet.adapters.configuration
 
 import io.micrometer.core.instrument.MeterRegistry
+import org.egualpam.contexts.observable.shared.adapters.metrics.DomainEventMetrics
+import org.egualpam.contexts.observable.shared.adapters.metrics.ErrorMetrics
+import org.egualpam.contexts.observable.shared.adapters.out.FakeEventBus
 import org.egualpam.contexts.observable.shared.application.ports.out.EventBus
-import org.egualpam.contexts.observable.wallet.adapters.metrics.DomainEventMetrics
-import org.egualpam.contexts.observable.wallet.adapters.metrics.ErrorMetrics
 import org.egualpam.contexts.observable.wallet.adapters.out.depositexists.DepositExistsMySQLAdapter
-import org.egualpam.contexts.observable.wallet.adapters.out.eventbus.FakeEventBus
 import org.egualpam.contexts.observable.wallet.adapters.out.shared.springdatajdbc.WalletCrudRepository
 import org.egualpam.contexts.observable.wallet.adapters.out.walletexists.WalletExistsMySQLAdapter
 import org.egualpam.contexts.observable.wallet.adapters.out.walletrepository.WalletRepositorySpringDataJdbcAdapter
@@ -29,8 +29,8 @@ class WalletPortsAndAdaptersConfiguration {
 
   @Bean
   fun walletRepositorySpringDataJdbcAdapter(
-      walletCrudRepository: WalletCrudRepository,
-      jdbcTemplate: NamedParameterJdbcTemplate
+    walletCrudRepository: WalletCrudRepository,
+    jdbcTemplate: NamedParameterJdbcTemplate
   ): WalletRepository = WalletRepositorySpringDataJdbcAdapter(
       walletCrudRepository,
       jdbcTemplate,

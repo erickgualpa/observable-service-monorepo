@@ -11,7 +11,7 @@ class OpenAPIConfiguration {
   fun openAPI(): OpenAPI {
     return OpenAPI()
         .info(
-            Info().title("Wallet Interaction Service"),
+            Info().title("Order Service"),
         )
   }
 }
