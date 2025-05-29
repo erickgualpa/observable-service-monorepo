@@ -1,8 +1,12 @@
 package org.egualpam.contexts.observable.order.application.ports.`in`
 
-class FindOrder {
+import org.egualpam.contexts.observable.order.application.ports.out.OrderRepository
+
+class FindOrder(private val repository: OrderRepository) {
   fun execute(query: FindOrderQuery): OrderDto {
-    return OrderDto(query.orderId)
+    val order =
+        query.orderId.let { repository.find(it) } ?: throw RuntimeException("Order not found")
+    return OrderDto(order.getId().value())
   }
 }
 
