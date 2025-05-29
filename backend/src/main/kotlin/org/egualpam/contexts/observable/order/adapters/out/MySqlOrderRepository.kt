@@ -13,7 +13,7 @@ class MySqlOrderRepository(
         .param("id", orderId)
         .query(OrderDto::class.java)
         .optional()
-    return result.map { Order.create(it.id) }.orElse(null)
+    return result.map { Order.load(it.id) }.orElse(null)
   }
 
   override fun save(order: Order) {
