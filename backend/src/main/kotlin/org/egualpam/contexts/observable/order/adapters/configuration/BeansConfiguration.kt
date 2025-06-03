@@ -1,9 +1,12 @@
 package org.egualpam.contexts.observable.order.adapters.configuration
 
+import io.micrometer.core.instrument.MeterRegistry
 import org.egualpam.contexts.observable.order.adapters.out.MySqlOrderRepository
 import org.egualpam.contexts.observable.order.application.ports.`in`.CreateOrder
 import org.egualpam.contexts.observable.order.application.ports.`in`.FindOrder
 import org.egualpam.contexts.observable.order.application.ports.out.OrderRepository
+import org.egualpam.contexts.observable.shared.adapters.metrics.DomainEventMetrics
+import org.egualpam.contexts.observable.shared.adapters.out.FakeEventBus
 import org.egualpam.contexts.observable.shared.application.ports.out.EventBus
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -23,4 +26,14 @@ class BeansConfiguration {
 
   @Bean
   fun orderRepository(jdbcClient: JdbcClient) = MySqlOrderRepository(jdbcClient)
+
+  @Bean
+  fun fakeEventBus(
+    domainEventMetrics: DomainEventMetrics
+  ): EventBus = FakeEventBus(domainEventMetrics)
+
+  @Bean
+  fun domainEventMetrics(
+    meterRegistry: MeterRegistry
+  ) = DomainEventMetrics(meterRegistry)
 }
