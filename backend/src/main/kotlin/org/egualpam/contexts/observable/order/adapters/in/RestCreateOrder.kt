@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory.getLogger
 import org.springframework.http.ResponseEntity
 import org.springframework.http.ResponseEntity.internalServerError
 import org.springframework.http.ResponseEntity.noContent
+import org.springframework.transaction.support.TransactionTemplate
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -16,7 +17,8 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class RestCreateOrder(
   private val createOrder: CreateOrder,
-  private val errorMetrics: ErrorMetrics
+  private val errorMetrics: ErrorMetrics,
+  private val transactionTemplate: TransactionTemplate
 ) {
 
   private final val logger = getLogger(this::class.java)
@@ -26,7 +28,9 @@ class RestCreateOrder(
     val command = CreateOrderCommand(request.order.id)
 
     return try {
-      command.let { createOrder.execute(it) }
+      transactionTemplate.executeWithoutResult {
+        command.let { createOrder.execute(it) }
+      }
       noContent().build()
     } catch (e: Exception) {
       logger.error("Unexpected error processing request [$request]:", e)
