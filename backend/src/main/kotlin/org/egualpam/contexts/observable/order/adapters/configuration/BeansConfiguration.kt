@@ -6,6 +6,7 @@ import org.egualpam.contexts.observable.order.application.ports.`in`.CreateOrder
 import org.egualpam.contexts.observable.order.application.ports.`in`.FindOrder
 import org.egualpam.contexts.observable.order.application.ports.out.OrderRepository
 import org.egualpam.contexts.observable.shared.adapters.metrics.DomainEventMetrics
+import org.egualpam.contexts.observable.shared.adapters.metrics.ErrorMetrics
 import org.egualpam.contexts.observable.shared.adapters.out.FakeEventBus
 import org.egualpam.contexts.observable.shared.application.ports.out.EventBus
 import org.springframework.context.annotation.Bean
@@ -36,4 +37,9 @@ class BeansConfiguration {
   fun domainEventMetrics(
     meterRegistry: MeterRegistry
   ) = DomainEventMetrics(meterRegistry)
+
+  @Bean
+  fun errorMetrics(
+    meterRegistry: MeterRegistry
+  ) = ErrorMetrics(meterRegistry)
 }

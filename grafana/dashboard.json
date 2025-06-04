@@ -22,6 +22,7 @@
   "liveNow": false,
   "panels": [
     {
+      "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -29,6 +30,7 @@
         "y": 0
       },
       "id": 8,
+      "panels": [],
       "title": "Application",
       "type": "row"
     },
@@ -87,7 +89,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "wallet_domain_events_published_total",
+          "expr": "application_domain_events_published_total",
           "format": "time_series",
           "instant": false,
           "legendFormat": "{{type}}",
@@ -151,7 +153,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "rate(wallet_domain_events_published_total[1m])",
+          "expr": "rate(application_domain_events_published_total[1m])",
           "format": "time_series",
           "instant": false,
           "legendFormat": "{{type}}",
@@ -217,7 +219,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "wallet_error_occurred_total",
+          "expr": "application_error_occurred_total",
           "format": "time_series",
           "instant": false,
           "legendFormat": "{{type}}",
@@ -299,8 +301,8 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 16,
-        "w": 12,
+        "h": 13,
+        "w": 24,
         "x": 0,
         "y": 18
       },
@@ -329,7 +331,7 @@
           },
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "rate(http_server_requests_seconds_count{uri=~\"/v1/wallets/{wallet-id}|/v1/wallets|/v1/wallets/{wallet-id}/deposit|/v2/wallets/{wallet-id}/deposit\"}[1m])",
+          "expr": "rate(http_server_requests_seconds_count{uri=\"/v1/orders\"}[1m])",
           "instant": false,
           "legendFormat": "{{method}} {{uri}} {{status}}",
           "range": true,
@@ -338,90 +340,6 @@
       ],
       "title": "HTTP requests per second",
       "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "mysql",
-        "uid": "P211906C1C32DB77E"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "custom": {
-            "align": "auto",
-            "cellOptions": {
-              "type": "auto"
-            },
-            "inspect": false
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 18
-      },
-      "id": 6,
-      "options": {
-        "cellHeight": "sm",
-        "footer": {
-          "countRows": false,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
-        "showHeader": true
-      },
-      "pluginVersion": "10.0.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "mysql",
-            "uid": "P211906C1C32DB77E"
-          },
-          "editorMode": "code",
-          "format": "table",
-          "rawQuery": true,
-          "rawSql": "SELECT d.account_entity_id AS 'Account Id', COUNT(d.id) AS 'Deposits amount'\nFROM (\n  SELECT *\n  FROM wis.deposit\n  ORDER BY created_at DESC\n  LIMIT 5\n) d\nGROUP BY d.account_entity_id\nORDER BY COUNT(d.id) DESC\nLIMIT 5;",
-          "refId": "A",
-          "sql": {
-            "columns": [
-              {
-                "parameters": [],
-                "type": "function"
-              }
-            ],
-            "groupBy": [
-              {
-                "property": {
-                  "type": "string"
-                },
-                "type": "groupBy"
-              }
-            ],
-            "limit": 50
-          }
-        }
-      ],
-      "title": "Last 5 deposits persisted",
-      "type": "table"
     }
   ],
   "refresh": "5s",

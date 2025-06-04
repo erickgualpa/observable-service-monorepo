@@ -2,6 +2,7 @@ package org.egualpam.contexts.observable.order.adapters.`in`
 
 import org.egualpam.contexts.observable.order.application.ports.`in`.CreateOrder
 import org.egualpam.contexts.observable.order.application.ports.`in`.CreateOrderCommand
+import org.egualpam.contexts.observable.shared.adapters.metrics.ErrorMetrics
 import org.slf4j.LoggerFactory.getLogger
 import org.springframework.http.ResponseEntity
 import org.springframework.http.ResponseEntity.internalServerError
@@ -14,7 +15,8 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/v1/orders")
 @RestController
 class RestCreateOrder(
-  private val createOrder: CreateOrder
+  private val createOrder: CreateOrder,
+  private val errorMetrics: ErrorMetrics
 ) {
 
   private final val logger = getLogger(this::class.java)
@@ -28,6 +30,7 @@ class RestCreateOrder(
       noContent().build()
     } catch (e: Exception) {
       logger.error("Unexpected error processing request [$request]:", e)
+      errorMetrics.error(e)
       internalServerError().build()
     }
   }

@@ -12,17 +12,17 @@
 ./run.sh
 ```
 
-🎮 Request massive deposits
+🎮 Simulate traffic using [K6 from Grafana](https://k6.io)
 <br>
 
 ```shell script
-./massive-deposits-async.sh
+k6 run ./k6/submit-order.js
 ```
 
 Or play with the API using [SpringDoc OpenAPI Swagger UI](http://localhost:8080/swagger-ui/index.html) and review
 metrics
 from
-the [Grafana dashboard](http://localhost:3000/d/da840768-d79b-46c5-8c09-95bb9e2a148b/wallet-interaction-service?orgId=1&refresh=5s):
+the [Grafana dashboard](http://localhost:3000/d/da840768-d79b-46c5-8c09-95bb9e2a148b/wallet-interaction-service?orgId=1&refresh=5s)
 
 🌃 Stop services
 <br>
