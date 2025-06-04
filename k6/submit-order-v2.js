@@ -5,7 +5,7 @@ import { uuidv4 } from 'https://jslib.k6.io/k6-utils/1.4.0/index.js';
 export const options = {
   stages: [
     { duration: '5s', target: 500 },   // Ramp up
-    { duration: '15s', target: 5000 },  // Stay at 5000 users
+    { duration: '20s', target: 10000 },  // Stay at 5000 users
     { duration: '5s', target: 500 },   // Ramp down
   ],
 };
