@@ -3,9 +3,15 @@ import { check, sleep } from 'k6';
 import { uuidv4 } from 'https://jslib.k6.io/k6-utils/1.4.0/index.js';
 
 export const options = {
-  vus: 100,
-  duration: '10s',
+  stages: [
+    { duration: '5s', target: 500 },   // Ramp up
+    { duration: '20s', target: 10000 },  // Stay at 5000 users
+    { duration: '5s', target: 500 },   // Ramp down
+  ],
 };
+
+const orderTypes = ['standard', 'express', 'priority'];
+const customers = ['customer_1', 'customer_2', 'customer_3'];
 
 export default function () {
   const url = 'http://localhost:8080/v1/orders';
@@ -13,6 +19,9 @@ export default function () {
   const payload = JSON.stringify({
     order: {
       id: uuidv4(),
+      type: orderTypes[Math.floor(Math.random() * orderTypes.length)],
+      customerId: customers[Math.floor(Math.random() * customers.length)],
+      timestamp: new Date().toISOString(),
     },
   });
 
@@ -28,5 +37,6 @@ export default function () {
     'status is 204': (r) => r.status === 204
   });
 
-  sleep(1);
+  // Variable sleep to simulate realistic user behavior
+  sleep(Math.random() * 2 + 0.5); // 0.5 to 2.5 seconds
 }
