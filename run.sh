@@ -1,5 +1,5 @@
 #!/bin/bash
-cd backend || exit
+cd backend-kotlin || exit
 ./mvnw clean package
 cd ..
 docker compose up -d

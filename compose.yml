@@ -17,9 +17,10 @@ services:
     networks:
       - backend
 
-  backend-service:
+  backend-kotlin:
+    image: backend-kotlin:dev
     build:
-      dockerfile: backend/Dockerfile
+      dockerfile: backend-kotlin/Dockerfile
     ports:
       - '8080:8080'
     depends_on:
