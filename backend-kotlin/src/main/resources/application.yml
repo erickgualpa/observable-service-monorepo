@@ -2,7 +2,7 @@ spring:
   application:
     name: order-service
   datasource:
-    url: jdbc:mysql://mysql:3306/wis
+    url: jdbc:mysql://mysql-for-backend-kotlin:3306/wis
     # TODO: Avoid root user from application
     username: root
     password: wis-db-pw

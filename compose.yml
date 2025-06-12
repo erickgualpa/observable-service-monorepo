@@ -1,5 +1,5 @@
 services:
-  mysql:
+  mysql-for-backend-kotlin:
     image: "mysql:latest"
     environment:
       - MYSQL_DATABASE=wis
@@ -17,6 +17,24 @@ services:
     networks:
       - backend
 
+  mysql-for-backend-java:
+    image: "mysql:latest"
+    environment:
+      - MYSQL_DATABASE=wis
+      - MYSQL_USER=wis-db-user
+      - MYSQL_PASSWORD=wis-db-pw
+      - MYSQL_ROOT_PASSWORD=wis-db-pw
+    ports:
+      - '3307:3306'
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 2s
+      timeout: 10s
+      retries: 30
+      start_period: 30s
+    networks:
+      - backend
+
   backend-kotlin:
     image: backend-kotlin:dev
     build:
@@ -24,7 +42,19 @@ services:
     ports:
       - '8080:8080'
     depends_on:
-      mysql:
+      mysql-for-backend-kotlin:
+        condition: service_healthy
+    networks:
+      - backend
+
+  backend-java:
+    image: backend-java:dev
+    build:
+      dockerfile: backend-java/Dockerfile
+    ports:
+      - '8081:8080'
+    depends_on:
+      mysql-for-backend-java:
         condition: service_healthy
     networks:
       - backend
