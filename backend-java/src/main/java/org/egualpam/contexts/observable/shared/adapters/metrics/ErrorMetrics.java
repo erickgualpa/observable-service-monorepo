@@ -14,6 +14,7 @@ public class ErrorMetrics {
     public void error(Exception cause) {
         Counter.builder("application_error_occurred")
                 .tag("type", cause.getClass().getSimpleName())
+                .tag("app", "order-service-backend-java")
                 .register(meterRegistry)
                 .increment();
     }

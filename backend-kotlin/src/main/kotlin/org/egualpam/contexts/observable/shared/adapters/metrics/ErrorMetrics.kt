@@ -9,6 +9,7 @@ class ErrorMetrics(
   fun error(cause: Exception) {
     Counter.builder("application_error_occurred")
         .tag("type", cause.javaClass.simpleName)
+        .tag("app", "order-service-backend-kotlin")
         .register(meterRegistry)
         .increment()
   }

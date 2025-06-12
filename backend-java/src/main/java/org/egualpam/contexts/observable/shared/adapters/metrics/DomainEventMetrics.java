@@ -15,6 +15,7 @@ public class DomainEventMetrics {
     public void published(DomainEvent event) {
         Counter.builder("application_domain_events_published")
                 .tag("type", event.getClass().getSimpleName())
+                .tag("app", "order-service-backend-java")
                 .register(meterRegistry)
                 .increment();
     }

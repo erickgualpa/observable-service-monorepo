@@ -10,6 +10,7 @@ class DomainEventMetrics(
   fun published(domainEvent: DomainEvent) {
     Counter.builder("application_domain_events_published")
         .tag("type", domainEvent.javaClass.simpleName)
+        .tag("app", "order-service-backend-kotlin")
         .register(meterRegistry)
         .increment()
   }
