@@ -19,5 +19,9 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
           cache: maven
-      - name: Build with Maven
+      - name: Build with Maven (backend-kotlin)
         run: mvn -f backend-kotlin/pom.xml -B clean verify
+
+      - name: Build with Gradle (backend-java)
+        run: ./gradlew check
+        working-directory: backend-java
