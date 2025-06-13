@@ -16,7 +16,7 @@
 <br>
 
 ```shell script
-k6 run ./k6/submit-order.js
+k6 run ./k6/submit-order-backend-kotlin.js
 ```
 
 Or play with the API using [SpringDoc OpenAPI Swagger UI](http://localhost:8080/swagger-ui/index.html) and review
