@@ -1,13 +1,15 @@
 package org.egualpam.contexts.observable.shared.application.domain
 
 abstract class AggregateRoot {
-  // TODO: Make domainEvents a Set
-  protected val domainEvents = arrayListOf<DomainEvent>()
+
+  private val domainEvents = mutableSetOf<DomainEvent>()
+
+  protected fun add(domainEvent: DomainEvent) = domainEvents.add(domainEvent)
 
   fun pullDomainEvents(): Set<DomainEvent> {
-    val domainEventsCopy = ArrayList(domainEvents)
+    val pulled = domainEvents.toSet()
     domainEvents.clear()
-    return domainEventsCopy.toSet()
+    return pulled
   }
 
   abstract fun getId(): AggregateId

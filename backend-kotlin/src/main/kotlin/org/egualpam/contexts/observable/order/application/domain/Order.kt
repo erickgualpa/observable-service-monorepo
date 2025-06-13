@@ -18,7 +18,7 @@ class Order(private val id: OrderId) : AggregateRoot() {
           order = order,
       )
 
-      order.domainEvents.add(event)
+      order.add(event)
 
       return order
     }
