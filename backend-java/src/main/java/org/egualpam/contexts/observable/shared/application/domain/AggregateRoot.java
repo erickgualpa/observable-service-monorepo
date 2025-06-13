@@ -1,6 +1,5 @@
 package org.egualpam.contexts.observable.shared.application.domain;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,7 +12,7 @@ public abstract class AggregateRoot {
     }
 
     public Set<DomainEvent> pullDomainEvents() {
-        var pulled = Collections.unmodifiableSet(domainEvents);
+        var pulled = Set.copyOf(domainEvents);
         domainEvents.clear();
         return pulled;
     }
